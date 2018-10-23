@@ -354,7 +354,79 @@ componentWillUnmount() {
 -  등록했던 이벤트 제거
 -  외부 라이브러리 dispose
 
+### Exception
+#### componentDidCatch
+
+```javascript
+state = {
+    number: 0,
+    error: false
+}
+componentDidCatch(error, info) {
+    this.setState({
+      error: true
+    });
+}
+render() {
+    if (this.state.error) return (<h1>에러발생!</h1>);
+}
+```
+
+- 에러 발생 경우
+    * 존재하지 않는 함수 호출
+    * 객체 또는 배열이 존재하지 않을 때
+- 다른 대안은?
+    > 
+    ```javascript
+    render() {
+        if (!this.props.object || !this.props.array || this.props.array.length ===0) return null;
+        // object 나 array 를 사용하는 코드
+    }
+    ```
+    >
+    ```javascript
+    class Sample extends Component {
+        static defaultProps = {
+            onIncrement: () => console.warn('onIncrement is not defined'),
+            object: {},
+            array: []
+        }
+    }
+    ```
+
+## 프로젝트 시작하기
+### Environment
+
+```
+node js v8.11.4
+yarn 1.10.1
+```
+
+- node 8.0 이상
+
+### Create React App
+
+```
+cd workspace
+npx create-react-app tutorial-app
+
+cd tutorial-app
+yarn start
+```
+
+- 자동으로 브라우저 실행
+![yarn start](https://scontent-icn1-1.xx.fbcdn.net/v/t1.15752-9/44821344_1870712213049715_3419273998930804736_n.png?_nc_cat=100&_nc_ht=scontent-icn1-1.xx&oh=05fd01fdf054184a6c733b30557f4110&oe=5C3E8CC9)
+
+- [create-react-app](https://github.com/facebook/create-react-app)
+    * 페이스북에서 제공해주는 리액트 프로젝트 초기 세팅 커맨드
+
+
 ## references
-Velopert 님의 [블로그](https://velopert.com/3613)와 [Youtube](https://www.youtube.com/watch?v=fT9iFFAt60E&t=0s&index=2&list=PL9FpF_z-xR_E4rxYMMZx5cOpwaiwCzWUH)를 통하여 기초를 다졌습니다.
-Flask와 React.js의 조합은 [GitHub](https://github.com/hidekuma/Flask-React-Webpack3)와 [Real Python](https://realpython.com/the-ultimate-flask-front-end/)을 참고하였습니다.
+- React 기초
+    * [Velopert 블로그](https://velopert.com/3613)
+    * [Velopert Youtube](https://www.youtube.com/watch?v=fT9iFFAt60E&t=0s&index=2&list=PL9FpF_z-xR_E4rxYMMZx5cOpwaiwCzWUH)
+
+- Flask X React
+    * [GitHub](https://github.com/hidekuma/Flask-React-Webpack3)
+    * [Real Python](https://realpython.com/the-ultimate-flask-front-end/)
 
