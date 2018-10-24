@@ -420,6 +420,38 @@ yarn start
 - [create-react-app](https://github.com/facebook/create-react-app)
     * 페이스북에서 제공해주는 리액트 프로젝트 초기 세팅 커맨드
 
+## Directory Structure
+
+- [React 프로젝트의 디렉토리 구조](https://medium.com/@FourwingsY/react-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%9D%98-%EB%94%94%EB%A0%89%ED%86%A0%EB%A6%AC-%EA%B5%AC%EC%A1%B0-bb183c0a426e)
+
+## Array in React
+- 리액트에서는 **불변성 유지**
+    * state 내부의 값을 직접적으로 수정하면 절대로 안된다.
+- *push, splice, unshift, pop*
+    * 배열자체를 직접 수정하게 되므로 적합하지 않음
+- **concat, slice, map, filter**
+    * 기존의 배열을 기반으로 하여 새로운 배열을 생성하는 함수 생성
+
+```javascript
+handleCreate = (data) => {
+    const { information } = this.state;
+    this.setState({
+        information: information.concat({ id: this.id++, ...data })
+    })
+}
+...
+<PhoneForm
+    onCreate={this.handleCreate}
+/>
+{JSON.stringify(information)}
+```
+
+
+## Fetching API Data with React.JS
+- [axios](https://github.com/axios/axios)
+    *
+
+- redux
 
 ## references
 - React 기초
