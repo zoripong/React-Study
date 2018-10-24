@@ -9,9 +9,10 @@ class Form extends Component {
   };
   render() {
     const { data, onUpdate, onDelete } = this.props;
-    const itemList = data.map(({ id, user_id, password }) => (
+    const itemList = data.map(({ id, userId, password }) => (
       <Item
-        user_id={user_id}
+        id={id}
+        userId={userId}
         password={password}
         key={id}
         onUpdate={onUpdate}

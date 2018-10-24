@@ -9,34 +9,33 @@ class App extends Component {
     this.users = [
       {
         id: 1,
-        user_id: "test",
+        userId: "test",
         password: "test"
       },
       {
         id: 2,
-        user_id: "test2",
+        userId: "test2",
         password: "test2"
       }
     ];
     this.state = {
       input: "",
-      showUsers: [...this.users] /* FIXME */
+      showUsers: [...this.users]
     };
   }
 
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      showUsers: this.users.filter(user => user.userId.includes(e.target.value))
     });
-    this.handleSearch(e);
   };
 
   handleSearch = e => {
-    const { input } = this.state;
     this.setState({
       showUsers: this.users.filter(user =>
-        user.user_id.includes(e.target.value)
+        user.userId.includes(this.state.input)
       )
     });
     e.preventDefault();
@@ -53,7 +52,7 @@ class App extends Component {
     if (e.key === "Enter") {
       console.log("확인");
       e.stopPropagation();
-      this.handleSearch(e);
+      this.handleSearch();
     }
     if (e.key === "Escape") {
       console.log("취소");
@@ -61,15 +60,29 @@ class App extends Component {
     }
   };
 
-  handleUpdate = () => {
-    console.log("업데이트");
+  handleUpdate = (id, data) => {
+    console.log("업데이트", data);
+    this.users = this.users.map(
+      user => (id === user.id ? { ...user, ...data } : user)
+    );
+    this.setState({
+      showUsers: [...this.users]
+    });
   };
-  handleDelete = () => {
-    console.log("삭제");
+  handleDelete = id => {
+    console.log("삭제", id);
+    // const { showUsers } = this.state;
+    this.users = this.users.filter(user => user.id !== id);
+    this.setState({
+      input: "",
+      showUsers: [...this.users]
+    });
+    console.log(this.users);
   };
 
   componentDidMount() {
     // 여기서 api
+    this.user = [];
   }
 
   render() {
