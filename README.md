@@ -395,6 +395,65 @@ export default Form;
 import "./TodoListTemplate.css";
 ```
 
+> make the handler
+
+```
+handleChange = () => {};
+```
+
+> using the props
+
+```
+onChange={this.props.onChange}
+```
+
+> 다른 이벤트가 발생하지 않도록
+
+```
+e.stopPropagation();
+```
+
+> 기본 이벤트가 실행되지 않도록
+
+```
+ e.preventDefault();
+```
+
+> map
+
+```javascript
+const todoList = todos.map(({ id, text, checked }) => (
+  <TodoItem
+    id={id}
+    text={text}
+    checked={checked}
+    onToggle={onToggle}
+    onRemove={onRemove}
+    key={id}
+  />
+));
+```
+
+> filter
+
+```javascript
+array.filter(num => num !== 3); // [1, 2, 4, 5]
+```
+
+> concat, slice
+
+```javascript
+array.slice(0, 2).concat(array.slice(3, 5)); // [1, 2, 4, 5]
+```
+
+> 배열 전개 연산자
+
+```javascript
+[...array.slice(0, 2), ...array.slice(3, 5)];
+```
+
+- [key attribute name](https://www.w3.org/TR/uievents-key/#named-key-attribute-values)
+
 ## references
 
 Velopert 님의 [블로그](https://velopert.com/3613)와 [Youtube](https://www.youtube.com/watch?v=fT9iFFAt60E&t=0s&index=2&list=PL9FpF_z-xR_E4rxYMMZx5cOpwaiwCzWUH)를 통하여 기초를 다졌습니다.
