@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./UserTemplate.css";
+import "./css/UserTemplate.css";
 
 class UserTemplate extends Component {
   render() {

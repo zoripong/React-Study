@@ -1,26 +1,31 @@
 import React, { Component } from "react";
 import Item from "./Item";
-import "./ItemList.css";
 
-class Form extends Component {
-  static defaultProps = {
-    input: "",
-    users: []
-  };
+import { connect } from 'react-redux';
+
+class ItemList extends Component {
   render() {
-    const { data, onUpdate, onDelete } = this.props;
-    const itemList = data.map(({ id, userId, password }) => (
+    // const { showUsers, onUpdate, onDelete } = this.props;
+    const itemList = this.props.showUsers.map(({ id, userId, password }) => (
+      /* 이게 맞나..? */
       <Item
         id={id}
         userId={userId}
         password={password}
         key={id}
-        onUpdate={onUpdate}
-        onDelete={onDelete}
       />
     ));
     return <div>{itemList}</div>;
   }
 }
 
-export default Form;
+
+let mapStateToProps = (state) => {
+  return {
+    showUsers: state.searcher.showUsers
+  };
+}
+
+ItemList = connect(mapStateToProps)(ItemList);
+
+export default ItemList;

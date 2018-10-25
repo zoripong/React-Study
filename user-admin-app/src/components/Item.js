@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import "./Item.css";
+import "./css/Item.css";
+
+import { connect } from 'react-redux';
+import { updateUser, deleteUser } from '../actions';
 
 class Item extends Component {
   constructor(props) {
@@ -10,9 +13,10 @@ class Item extends Component {
       password: ""
     };
   }
+
   handleDelete = () => {
-    const { id, onDelete } = this.props;
-    onDelete(id);
+    const { onDeleteUser, id } = this.props;
+    onDeleteUser(id);
   };
 
   handleToggleEvent = () => {
@@ -29,13 +33,8 @@ class Item extends Component {
     });
   };
 
-  // handleUpdate = () => {
-  //   const { id, onUpdate } = this.props;
-  //   onUpdate(id);
-  // };
-
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const { onUpdate, id, userId, password } = this.props;
+    const { id, userId, password } = this.props;
 
     if (!prevState.editing && this.state.editing) {
       // false -> true
@@ -50,7 +49,8 @@ class Item extends Component {
       // true -> false
       // input -> div
       const { userId, password } = this.state;
-      onUpdate(id, { userId, password });
+      this.props.onUpdateUser(id, { userId, password });
+
     }
   }
 
@@ -92,4 +92,13 @@ class Item extends Component {
   }
 }
 
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+    onUpdateUser: (id, data) => dispatch(updateUser(id, data)),
+    onDeleteUser: (id) => dispatch(deleteUser(id))
+  };
+}
+
+Item = connect(undefined, mapDispatchToProps)(Item);
 export default Item;
