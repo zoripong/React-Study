@@ -1,6 +1,7 @@
 export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';
 export const SET_INPUT = 'SET_INPUT';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
 
 export function updateUser(id, data) {
     return {
@@ -22,4 +23,12 @@ export function setInput(value) {
         type: SET_INPUT,
         input: value
     };
+}
+
+export function receiveData(data) {
+    return {
+        type: RECEIVE_DATA,
+        data: data
+    }
+
 }

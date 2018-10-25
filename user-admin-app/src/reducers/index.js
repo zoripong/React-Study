@@ -1,4 +1,4 @@
-import { UPDATE, DELETE, SET_INPUT } from '../actions';
+import { UPDATE, DELETE, SET_INPUT, RECEIVE_DATA } from '../actions';
 import { combineReducers } from 'redux';
 
 const initState = {
@@ -35,11 +35,16 @@ const searcher = (state = initState, action) => {
                 users: deleteResult,
                 showUsers: deleteResult
             });
-
         case SET_INPUT:
             return Object.assign({}, state, {
                 input: action.input,
                 showUsers: state.users.filter(user => user.userId.includes(action.input))
+            });
+        case RECEIVE_DATA:
+            console.log("호잇!");
+            return Object.assign({}, state, {
+                users: action.data,
+                showUsers: action.data
             });
         default:
             return state;

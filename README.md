@@ -635,3 +635,5 @@ Form = connect(mapStateToProps, mapDispatchToProps)(Form);
     * [GitHub](https://github.com/hidekuma/Flask-React-Webpack3)
     * [Real Python](https://realpython.com/the-ultimate-flask-front-end/)
 
+- Redux
+    * [Redux 코드로 이해하기](https://jae-kwang.github.io/blog/2017/06/21/redux-use/)
